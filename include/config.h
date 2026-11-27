@@ -20,5 +20,6 @@ typedef struct {
 
 void config_defaults(Config *c);
 int config_parse(Config *c, int argc, char **argv);
+bool config_validate(const Config *c);
 
 #endif

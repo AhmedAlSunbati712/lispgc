@@ -71,3 +71,24 @@ int config_parse(Config *c, int argc, char **argv) {
     }
     return argc; // no file, repl
 }
+
+// Checks that the values make sense together. Prints the problem and returns false if not.
+bool config_validate(const Config *c) {
+    if (c->cells_per_chunk == 0) {
+        fprintf(stderr, "error: --chunk-cells must be greater than 0\n");
+        return false;
+    }
+    if (c->initial_num_of_chunks == 0) {
+        fprintf(stderr, "error: --initial-chunks must be greater than 0\n");
+        return false;
+    }
+    if (c->max_num_of_chunks != 0 && c->max_num_of_chunks < c->initial_num_of_chunks) {
+        fprintf(stderr, "error: --max-chunks must be 0 (unlimited) or at least --initial-chunks\n");
+        return false;
+    }
+    if (!(0 <= c->shrink_threshold && c->shrink_threshold < c->grow_threshold && c->grow_threshold <= 1)) {
+        fprintf(stderr, "error: thresholds must satisfy 0 <= shrink < grow <= 1\n");
+        return false;
+    }
+    return true;
+}
