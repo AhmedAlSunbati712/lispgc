@@ -18,4 +18,7 @@ typedef struct {
 
 } Config;
 
+void config_defaults(Config *c);
+int config_parse(Config *c, int argc, char **argv);
+
 #endif
