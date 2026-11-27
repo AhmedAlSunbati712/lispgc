@@ -39,7 +39,7 @@ build/stress/%.o: src/%.c $(HEADERS) Makefile
 build/asan/%.o: src/%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@ 
 build/final/%.o: src/%.c $(HEADERS) Makefile  
-        $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@
 
 test: debug stress asan
 	@echo "=== Running tests with debug flags ==="
