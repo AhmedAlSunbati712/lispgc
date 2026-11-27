@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "config.h"
+#include "error.h"
 int main(int argc, char **argv) {
     Config config;
     config_defaults(&config);
@@ -20,6 +21,17 @@ int main(int argc, char **argv) {
     } else {
         printf("REPL\n");
     }
+    // Temporary test of the error jump
+    if (setjmp(error_jump) == 0) {
+        error_jump_set = true;
+        printf("before\n");
+        printf("error: test\n");
+        longjmp(error_jump, 1);
+        printf("after\n"); // should never print
+    } else {
+        printf("recovered\n");
+    }
+
     printf("lispgc 0.0\n");
     return 0;
 }
