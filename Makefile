@@ -27,7 +27,7 @@ build/debug/lispgc: $(DEBUG_OBJS)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $^ -o $@ $(EXTRA_LDFLAGS)
 build/stress/lispgc: $(STRESS_OBJS)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $^ -o $@ $(EXTRA_LDFLAGS)
-build/asan/lispgc: $(ASAN_OBJS):
+build/asan/lispgc: $(ASAN_OBJS)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $^ -o $@ $(EXTRA_LDFLAGS)
 build/final/lispgc: $(FINAL_OBJS)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $^ -o $@ $(EXTRA_LDFLAGS)
