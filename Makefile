@@ -33,12 +33,16 @@ build/final/lispgc: $(FINAL_OBJS)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $^ -o $@ $(EXTRA_LDFLAGS)
 
 build/debug/%.o: src/%.c $(HEADERS) Makefile
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@
 build/stress/%.o: src/%.c $(HEADERS) Makefile
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@
 build/asan/%.o: src/%.c $(HEADERS) Makefile
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@ 
-build/final/%.o: src/%.c $(HEADERS) Makefile  
+build/final/%.o: src/%.c $(HEADERS) Makefile
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c $< -o $@
 
 test: debug stress asan
